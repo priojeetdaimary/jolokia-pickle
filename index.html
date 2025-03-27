@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhut Jolokia Pickles - Buy Online</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: #E63946;
+            font-size: 28px;
+        }
+
+        .product-image {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 10px;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+            margin-bottom: 15px;
+        }
+
+        .old-price {
+            font-size: 20px;
+            text-decoration: line-through;
+            color: grey;
+        }
+
+        .discounted-price {
+            font-size: 26px;
+            font-weight: bold;
+            color: #1D3557;
+        }
+
+        .extra-discount {
+            font-size: 22px;
+            font-weight: bold;
+            color: red;
+            animation: pulse 1.5s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.7; }
+            100% { transform: scale(1.1); opacity: 1; }
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+        }
+
+        .button {
+            display: block;
+            padding: 12px;
+            margin: 10px 0;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+        }
+
+        .whatsapp-btn:hover {
+            background: #1EBE57;
+        }
+
+        .upi-container {
+            margin-top: 20px;
+            background: #FAF3E0;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .qr-code {
+            width: 150px;
+            margin-top: 10px;
+        }
+
+        .google-form {
+            background: #4285F4;
+            color: white;
+        }
+
+        .google-form:hover {
+            background: #2A66C2;
+        }
+
+        /* Discount Bar */
+        #discount-bar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: red;
+            color: white;
+            text-align: center;
+            padding: 12px;
+            font-size: 18px;
+            font-weight: bold;
+            z-index: 9999;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🔥 Bhut Jolokia Pickles 🔥</h1>
+        
+        <img src="bhutjolokia-pickle.jpg" alt="Bhut Jolokia Pickles" class="product-image">
+
+        <p class="old-price">₹299</p>
+        <p class="discounted-price">₹173 <span class="extra-discount">(42% OFF)</span></p>
+        <p class="extra-discount">✨ 10% OFF on 1st order: <b>₹155</b> (Limited time!)</p>
+        
+        <label for="quantity"><b>Select Quantity:</b></label>
+        <select id="quantity">
+            <option value="1">1 Jar</option>
+            <option value="2">2 Jars</option>
+            <option value="3">3 Jars</option>
+            <option value="4">4 Jars</option>
+            <option value="5">5 Jars</option>
+        </select>
+
+        <a href="https://wa.me/916900399605?text=I want to order Bhut Jolokia Pickles (₹155 per jar for 1st order). Quantity: 1" id="whatsapp-order" class="button whatsapp-btn">Order via WhatsApp</a>
+
+        <div class="upi-container">
+            <h3>💰 Pay ₹155 via UPI / Google Pay 💰</h3>
+            <p><b>UPI ID: 6900399605@ptsbi</b></p>
+            <img src="qrcode.png" alt="UPI QR Code" class="qr-code">
+        </div>
+
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScAUiEmNx-kyEdJxTTUA5F8E9kmqeBpQ47WsJLgrBscHzbJOg/viewform?usp=header" class="button google-form">Fill Order Details</a>
+    </div>
+
+    <!-- Discount Bar -->
+    <div id="discount-bar">
+        🎉 <strong>Limited-Time Offer:</strong> Get <strong>42% OFF</strong> on ₹299 (Now only ₹173) 🚀  
+        <br>🔥 Extra <strong>10% OFF</strong> on your 1st order! Offer expires in <span id="firstOrderCountdown"></span> ⏳  
+        | 📞 <a href="tel:+916900399605" style="color: yellow; text-decoration: none;">Call Us</a>  
+        | ✉ <a href="mailto:priojeetdaimary143@gmail.com" style="color: yellow; text-decoration: none;">Email Us</a>  
+    </div>
+
+    <script>
+        function updateCountdown() {
+            var firstOrderEndTime = new Date().getTime() + (24 * 60 * 60 * 1000); // 24-hour countdown for 1st order
+
+            function updateTimer(elementId, endTime) {
+                var now = new Date().getTime();
+                var timeLeft = endTime - now;
+
+                if (timeLeft < 0) {
+                    document.getElementById(elementId).innerHTML = "Expired!";
+                } else {
+                    var hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    var minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                    var seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+                    document.getElementById(elementId).innerHTML = hours + "h " + minutes + "m " + seconds + "s";
+                }
+            }
+
+            setInterval(() => updateTimer("firstOrderCountdown", firstOrderEndTime), 1000);
+        }
+
+        updateCountdown();
+
+        document.getElementById("quantity").addEventListener("change", function() {
+            let quantity = this.value;
+            let whatsappLink = "https://wa.me/916900399605?text=I want to order Bhut Jolokia Pickles (₹155 per jar for 1st order). Quantity: " + quantity;
+            document.getElementById("whatsapp-order").href = whatsappLink;
+        });
+    </script>
+
+</body>
+</html>
+<div style="text-align: center;">
+    <img src="bhutjolokia-pickle.jpg" alt="Bhut Jolokia Pickle" width="200">
+    <p style="font-size: 16px; font-weight: bold;">250g per jar</p>
+</div>
+<iframe width="560" height="315" 
+    src="https://www.youtube.com/embed/aZdNqSd27io" 
+    frameborder="0" 
+    allowfullscreen>
+</iframe>
